@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Adapter } from './adapter';
 import { QuestionBase } from './question-base';
+import { DropdownQuestion } from './question-dropdown'
+import { TextboxQuestion } from './question-textbox'
 
 export interface DocumentProperties {
   name: string;
@@ -21,11 +23,21 @@ export class DocumentPropetiesAdapter implements Adapter<QuestionBase<string>> {
       label: d.name,
       required: false,
       // order: 1,
-      controlType: d.objectType,
+      controlType: '',
       type: d.objectType,
       // for options we need to create key value pair
       // options: d.options
     };
-    return q;
+    if (d.objectType === 'options' && !!d.options) {
+      return new DropdownQuestion({
+        ...q,
+        options: [{key: 'a', value: 'a'}]
+      })
+    } else {
+      return new TextboxQuestion({
+        ...q
+      })
+    }
+
   }
 }

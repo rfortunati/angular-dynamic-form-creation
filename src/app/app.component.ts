@@ -13,22 +13,29 @@ import { DocumentProperties } from './document.properties';
       <app-dynamic-form [questions]="questions$ | async"></app-dynamic-form>
     </div>
 
-    <h1>My Custom Form</h1>
-    <div *ngFor="let d of documentProperties$ | async">
-      <p>{{d.name}}, {{d.objectType}}, {{d.isEditable}}</p>
+<!--    <h1>My Custom Form</h1>-->
+<!--    <div *ngFor="let d of documentProperties$ | async">-->
+<!--      <p>{{d.name}}, {{d.objectType}}, {{d.isEditable}}</p>-->
+<!--    </div>-->
+    
+    <div>
+      <h1>My Dymanic Form</h1>
+      <div *ngIf="test$ | async as f">
+        <app-dynamic-form [questions]="f"></app-dynamic-form>
+      </div>
     </div>
   `,
   providers: [QuestionService],
 })
 export class AppComponent {
   questions$: Observable<QuestionBase<any>[]>;
-  documentProperties$: Observable<DocumentProperties[]>;
-
+  // documentProperties$: Observable<DocumentProperties[]>;
+  test$: Observable<QuestionBase<string>[]>
   constructor(service: QuestionService) {
     this.questions$ = service.getQuestions();
-    this.documentProperties$ = service.getDocumentProperties();
-
-    service.getTest().subscribe((a) => console.log(a));
+    // this.documentProperties$ = service.getDocumentProperties();
+    this.test$ = service.getTest();
+    // service.getTest().subscribe((a) => console.log(a));
   }
 }
 
