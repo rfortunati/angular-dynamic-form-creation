@@ -13,10 +13,13 @@
   <div *ngIf="payLoad" class="form-row">
     <strong>Saved the following values</strong><br>{{payLoad}}
   </div>
+
+  <p>Form Status: {{ form.status }}</p>
+  <p>Form Value: {{ form.value | json }}</p>
 </div>
 
 
-<!-- 
+<!--
 Copyright Google LLC. All Rights Reserved.
 Use of this source code is governed by an MIT-style license that
 can be found in the LICENSE file at https://angular.io/license

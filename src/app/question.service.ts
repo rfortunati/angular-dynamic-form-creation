@@ -6,7 +6,7 @@ import { TextboxQuestion } from './question-textbox';
 import { Observable, map, of } from 'rxjs';
 import {
   DocumentProperties,
-  DocumentPropetiesAdapter,
+  DocumentPropertiesAdapter,
 } from './document.properties';
 
 @Injectable()
@@ -38,7 +38,7 @@ export class QuestionService {
 
   constructor(
     private readonly http: HttpClient,
-    private readonly adapter: DocumentPropetiesAdapter
+    private readonly adapter: DocumentPropertiesAdapter
   ) {}
 
   // TODO: get from a remote source of question metadata
@@ -91,16 +91,16 @@ export class QuestionService {
     return this.http
       .get<DocumentProperties[]>('./assets/document.properties.json', {
         headers,
-      })
-      .pipe(
-        map((a: DocumentProperties[]) =>
-          a.sort(
-            (x, y) =>
-              this.displayOrderDocumentProperties.indexOf(x.name) -
-              this.displayOrderDocumentProperties.indexOf(y.name)
-          )
-        )
-      );
+      });
+      // .pipe(
+      //   map((a: DocumentProperties[]) =>
+      //     a.sort(
+      //       (x, y) =>
+      //         this.displayOrderDocumentProperties.indexOf(x.name) -
+      //         this.displayOrderDocumentProperties.indexOf(y.name)
+      //     )
+      //   )
+      // );
   }
 }
 

@@ -4,8 +4,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { DynamicFormComponent } from './dynamic-form.component';
-import { DynamicFormQuestionComponent } from './dynamic-form-question.component';
+import { DynamicFormComponent } from './dynamicp-form/dynamic-form.component';
+import { DynamicFormQuestionComponent } from './dynamicp-form/dynamic-form-question/dynamic-form-question.component';
 
 @NgModule({
   imports: [BrowserModule, ReactiveFormsModule, HttpClientModule],
